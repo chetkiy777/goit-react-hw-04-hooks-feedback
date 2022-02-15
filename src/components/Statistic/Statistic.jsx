@@ -22,7 +22,7 @@ const Statistic = ({ good, neutral, bad, total, positiveFeedBack }) => {
       </label>
 
       <label className={styles.label}>
-        positive Feedback: <span>{positiveFeedBack.toFixed(2)}%</span>
+        positive Feedback: <span>{positiveFeedBack.toFixed(0)}%</span>
       </label>
     </div>
   );
