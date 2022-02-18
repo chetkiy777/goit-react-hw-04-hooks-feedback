@@ -1,8 +1,8 @@
 {
-  "name": "react-homework-template",
+  "name": "goit-react-hw-04-hooks-feedback",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://chetkiy777.github.io/goit-react-hw-02-feedback/",
+  "homepage": "https://chetkiy777.github.io/goit-react-hw-04-hooks-feedback/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
