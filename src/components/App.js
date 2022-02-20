@@ -1,42 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Control from './Control/Control';
 import Section from './Section/Section';
 import Statistic from './Statistic/Statistic';
 import Notification from './Notification/Notification';
 
 export const App = () => {
-  let [good, setGood] = useState(0);
-  let [neutral, setNeutral] = useState(0);
-  let [bad, setBad] = useState(0);
-  let [total, setTotal] = useState(0);
-  let [positiveFeedBack, setPositiveFeedback] = useState(0);
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [positiveFeedBack, setPositiveFeedback] = useState(0);
 
   const incrementGood = () => {
-    setGood((good += 1));
-    summTotal();
-    calcPositive();
+    setGood(prevState => prevState + 1);
   };
 
   const incrementNeutral = () => {
-    setNeutral((neutral += 1));
-    summTotal();
-    calcPositive();
+    setNeutral(prevState => prevState + 1);
   };
 
   const incrementBad = () => {
-    setBad((bad += 1));
-    summTotal();
-    calcPositive();
+    setBad(prevState => prevState + 1);
   };
 
+  useEffect(() => {
+    summTotal();
+    calcPositive();
+  });
+
   const summTotal = () => {
-    let calcTotal = good + neutral + bad;
-    setTotal(calcTotal);
+    setTotal(good + neutral + bad);
   };
 
   const calcPositive = () => {
-    let calculate = (good / total) * 100;
-    setPositiveFeedback(calculate);
+    setPositiveFeedback((good / total) * 100);
   };
 
   return (
