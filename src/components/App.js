@@ -11,17 +11,25 @@ export const App = () => {
   const [total, setTotal] = useState(0);
   const [positiveFeedBack, setPositiveFeedback] = useState(0);
 
-  const incrementGood = () => {
-    setGood(prevState => prevState + 1);
+  const onLeaveFeedback = name => {
+    switch (name) {
+      case 'good':
+        setGood(state => state + 1);
+        return;
+      case 'neutral':
+        setNeutral(state => state + 1);
+        return;
+      case 'bad':
+        setBad(state => state + 1);
+        return;
+      default:
+        return;
+    }
   };
 
-  const incrementNeutral = () => {
-    setNeutral(prevState => prevState + 1);
-  };
-
-  const incrementBad = () => {
-    setBad(prevState => prevState + 1);
-  };
+  const params = {
+    good, neutral, bad, total, positiveFeedBack
+  }
 
   useEffect(() => {
     summTotal();
@@ -33,26 +41,21 @@ export const App = () => {
   };
 
   const calcPositive = () => {
-    setPositiveFeedback((good / total) * 100);
+    setPositiveFeedback(((good / total) * 100).toFixed(0) + "%");
   };
 
   return (
     <div>
       <Section title="Please leave feedback">
         <Control
-          incrementGood={incrementGood}
-          incrementNeutral={incrementNeutral}
-          incrementBad={incrementBad}
+          incrementValue={onLeaveFeedback}
+          params={params}
         />
       </Section>
       {total !== 0 ? (
         <Section title="Statistics">
           <Statistic
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={total}
-            positiveFeedBack={positiveFeedBack}
+            params={params}
           />
         </Section>
       ) : (
